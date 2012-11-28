@@ -10,17 +10,17 @@ import android.widget.TextView;
 
 public class PinnedHeaderAdapter extends ArrayAdapter<ListCellLarge> {
 
-	public ListCellLarge[] data;
-	public boolean[] isHeader = null;
-	private LayoutInflater inflater;
-	private int width;
+	public ListCellLarge[] mData;
+	public boolean[] mIsHeader = null;
+	private LayoutInflater mInflater;
+	private int mWidth;
 
 	public PinnedHeaderAdapter(Context context, int layoutResourceId,
 			ListCellLarge[] data, int width) {
 		super(context, layoutResourceId, data);
-		this.data = data;
-		this.width = width;
-		inflater = LayoutInflater.from(context);
+		this.mData = data;
+		this.mWidth = width;
+		mInflater = LayoutInflater.from(context);
 		setupHeaderArray();
 	}
 
@@ -30,7 +30,7 @@ public class PinnedHeaderAdapter extends ArrayAdapter<ListCellLarge> {
 
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.list_item, parent, false);
+			convertView = mInflater.inflate(R.layout.list_item, parent, false);
 			holder.image = (ImageView) convertView.findViewById(R.id.image);
 			holder.textHeader = (TextView) convertView
 					.findViewById(R.id.header);
@@ -41,15 +41,15 @@ public class PinnedHeaderAdapter extends ArrayAdapter<ListCellLarge> {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.image.setImageBitmap(data[position].image);
-		holder.imageText.setText(data[position].imageText);
+		holder.image.setImageBitmap(mData[position].mImage);
+		holder.imageText.setText(mData[position].mImageText);
 
-		if (isHeader[position] == true) {
-			holder.textHeader.setHeight((int) (width * 0.24));
-			holder.textHeader.setText(data[position].location);
+		if (mIsHeader[position] == true) {
+			holder.textHeader.setHeight((int) (mWidth * 0.24));
+			holder.textHeader.setText(mData[position].mLocation);
 			holder.textHeader.setBackgroundColor(0xFFFF00FF);
 		} else {
-			holder.textHeader.setHeight((int) (width * 0.24));
+			holder.textHeader.setHeight((int) (mWidth * 0.24));
 			holder.textHeader.setText("");
 			holder.textHeader.setBackgroundColor(0x00000000);
 		}
@@ -64,17 +64,17 @@ public class PinnedHeaderAdapter extends ArrayAdapter<ListCellLarge> {
 	}
 
 	private void setupHeaderArray() {
-		isHeader = new boolean[data.length];
-		for (int position = 0; position < data.length; position++) {
+		mIsHeader = new boolean[mData.length];
+		for (int position = 0; position < mData.length; position++) {
 			if (position == 0) {
-				isHeader[0] = true;
+				mIsHeader[0] = true;
 			} else {
-				String current = data[position].location;
-				String prev = data[position - 1].location;
+				String current = mData[position].mLocation;
+				String prev = mData[position - 1].mLocation;
 				if (!current.equals(prev)) {
-					isHeader[position] = true;
+					mIsHeader[position] = true;
 				} else {
-					isHeader[position] = false;
+					mIsHeader[position] = false;
 				}
 			}
 		}

@@ -8,13 +8,13 @@ public class ListCellLarge {
 	static final String LOC_DBN = "Durban";
 	static final String LOC_CPT = "CapeTown";
 
-	public String location;
-	public Bitmap image;
-	public String imageText;
+	public String mLocation;
+	public Bitmap mImage;
+	public String mImageText;
 
 	public ListCellLarge(String location, String imageText, Bitmap image) {
-		this.location = location;
-		this.image = image;
-		this.imageText = imageText;
+		this.mLocation = location;
+		this.mImage = image;
+		this.mImageText = imageText;
 	}
 }

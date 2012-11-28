@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -45,7 +44,6 @@ public class PinnedHeaderListView extends ListView {
 	}
 
 	private void setup() {
-		Log.d("ATGA", "setup width: " + getWidth());
 		mFrameLayout = (FrameLayout) ((LayoutInflater) mContext
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
 				R.layout.list_dynamic_header, null);
@@ -70,12 +68,12 @@ public class PinnedHeaderListView extends ListView {
 		// determine if there is a header near the dynamic header
 		mPinnedHeaderAdapter = (PinnedHeaderAdapter) getAdapter();
 		mTop = 0;
-		if (mPinnedHeaderAdapter.isHeader[getFirstVisiblePosition()]) {
+		if (mPinnedHeaderAdapter.mIsHeader[getFirstVisiblePosition()]) {
 			if (getChildAt(0) != null) {
 				mTop = getChildAt(0).getTop();
 			}
-		} else if ((getFirstVisiblePosition() + 1 < mPinnedHeaderAdapter.isHeader.length)
-				&& mPinnedHeaderAdapter.isHeader[getFirstVisiblePosition() + 1]) {
+		} else if ((getFirstVisiblePosition() + 1 < mPinnedHeaderAdapter.mIsHeader.length)
+				&& mPinnedHeaderAdapter.mIsHeader[getFirstVisiblePosition() + 1]) {
 			if (getChildAt(1) != null) {
 				mTop = getChildAt(1).getTop();
 			}
@@ -97,9 +95,9 @@ public class PinnedHeaderListView extends ListView {
 		// is still slightly visible
 		String headerText = "";
 		if (mTop <= 0) {
-			headerText = mPinnedHeaderAdapter.data[getFirstVisiblePosition() + 1].location;
+			headerText = mPinnedHeaderAdapter.mData[getFirstVisiblePosition() + 1].mLocation;
 		} else {
-			headerText = mPinnedHeaderAdapter.data[getFirstVisiblePosition()].location;
+			headerText = mPinnedHeaderAdapter.mData[getFirstVisiblePosition()].mLocation;
 		}
 
 		mDynamicHeader.setText(headerText);

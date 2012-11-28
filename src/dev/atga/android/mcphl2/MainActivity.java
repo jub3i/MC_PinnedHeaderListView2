@@ -1,14 +1,12 @@
 package dev.atga.android.mcphl2;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
-import android.widget.ArrayAdapter;
+
 
 public class MainActivity extends Activity {
 
